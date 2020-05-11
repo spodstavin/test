@@ -1,0 +1,945 @@
+LTP-20030807
+
+- Reorganized and updated the testcase		( Robbie Williamson )
+  descriptions under /doc
+- Updated the tst_rmdir API to use		( Robbie Williamson )
+  remove() instead of rmdir().
+- Added support for the __ARM_ARCH_4T__ 	( Ramesh Subramanian )
+  architecture.
+- Updated clone() tests to allow them		( Robbie Williamson )
+  to execute on ppc64.
+- Created new clone07 test to check for		( Robbie Williamson )
+  glibc bug.
+- Rewrote the generate.sh scripts to perl	( Randy Hron
+  for faster execution.				  Robbie Williamson )
+- Updated "fsstress" to allow setting the	( Robbie Williamson )
+  number of loops to run and cleanup options.
+- Removed case from diotest4 for read/writes	( Robbie Williamson )
+  with negative counts. Not in SUS.
+- Fixed chown03 testcase to allow for better	( Paul Larson )
+  execution stability.
+- Added check to mmapstress tests to see if 	( Robbie Williamson )
+  roundup() is defined, before defining it.
+- Cleaned up sched_stress.			( Randy Hron )
+- Modified diotest4 to test dio to /dev/null	( Robbie Williamson )
+  but not record it as a pass or fail.
+- Removed extra "\n"s from creat09.		( Paul Larson )
+- Updated syscall tests that used their own	( Randy Hron )
+  strcpy() definition, instead of string.h's.
+- Fixed fchown04 testcase to allow for better	( Paul Larson )
+  execution stability.
+- Updated fcntl14 to allow for better execution	( Ramesh Subramanian )
+  stability & remove possibility of false fails.
+- Applied Xtensa architecture specific patches. ( Joe Taylor )
+- Updated memory tests to allow for distros	( Robbie Williamson )
+  that allow non-root users to m(un)lockall 
+  within the RLIMIT_MEMLOCK resource limit.
+- Changed the way munlock02 attempts to access  ( Robbie Williamson )
+  outside it's memory space to a more reliable
+  method.
+- Corrected an expected error return for a case ( Andrew Morton 
+  in recvmsg01 and sendmsg01.			  Paul Larson )
+- Corrected compiler warnings in the multicast  ( Robbie Williamson )
+  test, mc_opts.
+- Corrected syntax error reported in 		( Robbie Williamson )
+  Bug #773670.
+- Corrected unitialized variable problem in 	( Ramesh Subramanian )
+  sendfile01.
+- Updated the Open Posix Test Suite to 1.2	( Robbie Williamson )
+- Applied patches to Open HPI Test Suite.	( Kevin Gao )
+
+
+LTP-20030710
+
+- Added LIB_DIR variable to top-level Makefile	  ( Robbie Williamson )
+  to allow specification of where to install
+  libproc.so for the top-LTP tool.
+- Updated Open POSIX Test Suite to 1.1.0.         ( Robbie Williamson )
+- Added JFS tests to the LVM test script.	  ( Marty Ridgeway )
+- Removed tests from the LTP system stress 	  ( Robbie Williamson )
+  script that had problems running concurrently. 
+- Updated ar01 to avoid bug if building rpm.	  ( Manoj Iyer )
+- Added ACPI testcases.				  ( Marty Ridgeway )
+- Added testcases to execute inline functions in  ( Marty Ridgeway )
+  the kernel tree.
+- Added testcases to for the NLS filesystem.	  ( Marty Ridgeway )
+- Added PCI testcases.				  ( Marty Ridgeway )
+- Added USB device testcases.			  ( Marty Ridgeway )
+- Applied code cleanup patches to stream tests.   ( Randy Hron )
+- Ported sem02.c to use some of the LTP test      ( Paul Larson )
+  harness API.
+- Updated mtest01 to fix hang issues.		  ( Robbie Williamson
+						    Paul Larson )
+- TCID fixes to various syscall tests.		  ( Paul Larson )
+- Cleanup of various syscall test outputs.	  ( Paul Larson )
+- IA64 fix to mlock02, mprotect01, munlock02.	  ( Jacky Malcles )
+- Applied uclibc patch for memory tests.	  ( David McKay )
+- Increased the size of memory to attempt to	  ( Robbie Williamson )
+  munlock for munlock02 to ensure correct
+  test execution.
+- Updated readdir02 to catch SIGSEGV and fixed    ( Robbie Williamson
+  small bug in test.				    Paul Larson )
+- Updated recvmsg01 and sendmsg01 to handle 2.5   ( Robbie Williamson )
+  64bit architecture specifics.
+- Updates to syslog01-10 to support Debian	  ( Robbie Williamson  
+  systems and improved their stability.  	    Paul Larson )
+- Applied IA64 specific patch to syslog11/12.	  ( Robbie Williamson )
+- Removed an unneccessary free() call in ustat01  ( Doug Ramier )
+- Corrected the "install:" section of the mc_opts ( Robbie Williamson )
+  network test.
+- Added default option for RHOST for nfs03 and    ( Robbie Williamson )
+  nfsstress. 
+- Modified rwho01, sendfile01, tcpdump01 to use   ( Manoj Iyer )
+  test APIs and added checks for required 
+  commands.
+- Added the Open HPI testsuite.			  ( Kevin Gao
+    http://openhpi.sourceforge.net/		    Robbie Williamson )
+- Added new filesystem testscripts.		  ( Marty Ridgeway )
+- Added 'mkrootfs' utility to tools section.	  ( Manoj Iyer )
+
+ 
+
+
+LTP-20030606
+
+- Updated ltpmenu to redirect `ver_linux` output  ( Robbie Williamson )
+  to the redirected output file.
+- Added warning to runalltests.sh when the "-x"   ( Robbie Williamson )
+  option is selected.
+- Corrected syntax error in RHOST/PASSWD          ( Robbie Williamson )
+  checking section.
+- Made `pan` Makefile honor top-level LOADLIBES.  ( Robbie Williamson )
+- Relocated all Open POSIX Test Suite tests       ( Robbie Williamson ) 
+  listed in the scenario files to /runtest/posix.
+- Relocated all Open POSIX Test Suite tests to    ( Robbie Williamson )
+  /testcases/open_posix_testsuite.
+- Removed OPEN Posix Test Suite tests from	  ( Robbie Williamson )
+  runalltests.sh default run.
+- Ported new asynchronous I/O test, aio01, to     ( Narasimha Sharoff
+  LTP.						    Paul Larson )
+- Added ppc64/ia64 fix to diotest4.		  ( Peter Bergner
+						    Robbie Williamson )
+- Updated mem01 to use sysinfo() and adjusted     ( Robbie Williamson )
+  allocation limits.
+- Updated mtest01 to run on large memory machines ( Robbie Williamson )
+- Updated mmap tests to correctly cleanup after   ( Paul Larson )
+  execution.
+- Cleaned up sched_stress and fixed problem with  ( Paul Larson )
+  segfaulting reported by Andi Kleen.
+- Added s390/s390x specific code to clone() tests ( Jay Huie
+						    Robbie Williamson )
+- Fixed typo in mkdir04 in PASS output.		  ( Paul Larson )
+- Corrected syntax error in munlockall02.	  ( Robbie Williamson )
+- Applied ppc64 and s390x fix to profil01.        ( Steve Munroe
+						    Robbie Williamson )
+- Fixed syntax problem in mc_opts.                ( Robbie Williamson )
+- Fixed "-i" problem with sendfile02.		  ( Aniruddha Marathe )
+- Included /asm/atomic.h file to swapon02         ( Paul Larson )
+  includes to allow test to compile on RH 7.2
+- Applied ia64 fix for sysctl() tests.		  ( Jacky Malcles )
+- Made syslog tests correctky cleanup after       ( Robbie Williamson )
+  failure and handle multiple instances.
+- Fixed mc_commo to make sure `ping` uses the     ( Dang En Ren
+  correct interface.				    Robbie Williamson )
+- Fixed small bug in ltpServer.c.		  ( Paul Larson )
+- Allowed `make` to continue on errors in	  ( Robbie Williamson )
+  open_posix_testsuite build/install.
+- Added pause in "all" and "install" section of   ( Robbie Williamson )
+  open_posix_testsuite/Makefile to allow user to
+  read location of build/install error logfiles.
+- Removed the procps directory in /tools and	  ( Robbie Williamson )
+  replaced with a stripped down version: top-LTP.
+
+
+LTP-20030508
+
+- Updated the LTP to build and execute on NPTL	  ( Robbie Williamson )
+  installed systems
+- Applied 'ash' compatibilty patch		  ( Dan Kegel )
+- Applied "CFLAGS+=" Makefile patch		  ( Vasan Sundar )
+- Created "/testscripts" directory and relocated  ( Robbie Williamson )
+  scripts to it
+- Fixed kill problem with genload's stress.c	  ( Amos Waterland )
+- Added checking for users and sys groups to	  ( Robbie Williamson ) 
+  IDcheck.sh. Also, called the script from 
+  runalltests.sh before executing tests to support 
+  cross-compiled platforms
+- Added 'ltpmenu' GUI				  ( Manoj Iyer
+						    Robbie Williamson )
+- Applied "posixfy" patches			  ( Vasan Sundar )
+- Updated runalltests.sh to use -o for	 	  ( Robbie Williamson )
+  redirecting output.
+- Added code to runalltests.sh to prompt for 	  ( Robbie Williamson )
+  RHOST and PASSWD when running network tests.
+- Updated Open POSIX Test Suite header file to    ( Robbie Williamson )
+  allow timer tests to build.
+- Compiler warnings cleanups.			  ( Robbie Williamson )
+- Corrected buffer overflow in inode02.		  ( Dan Kegel )
+- Updated disktest to 1.1.10 and fixed for        ( Robbie Williamson )
+  systems w/o O_DIRECT
+- Completed merge of Open POSIX Test Suite 0.9.0  ( Robbie Williamson )
+- Applied ia64 specific patches			  ( Jacky Malcles )
+- Updated Makefiles to allow use of "-j"	  ( Nate Straz )
+- Correct fork05 for use in newer glibc/kernels   ( Ulrich Drepper )
+- Applied "type" fixes to recvfrom and recvmsg    ( Andreas Jaeger )
+- Applied x86_64 specific patches		  ( Andreas Jaeger )
+- Applied MSG_CMSG_COMPAT fix for 64bit 2.5	  ( Bryan Logan )
+  kernels.
+- Added new testcase for setegid.		  ( Dan Kegel )
+- Modified syslog tests to use test apis	  ( Manoj Iyer )
+- Added 2.5 timer tests.			  ( Aniruddha Marathe )
+- Added Device Mapper tests.			  ( Marty Ridgeway )
+- Added sockets tests.				  ( Marty Ridgeway )
+- Removed fptest03 due to use of obsolete 	  ( Robbie Williamson )
+  syscalls that perform 48bit math operations
+
+ 
+
+
+LTP-20030403
+
+- Fixed CFLAGS in all makefiles to append (+=)	  ( Vasan Sundar )
+- Removed the outdated & poorly written 	  ( Robbie Williamson )
+  GUI ( ltp )		 
+- Corrected bug with -x flag in runalltests.sh	  ( Robbie Williamson )
+- Added additional documentation into 		  ( Manoj Iyer  
+  runalltests.sh 				    Robbie Williamson )
+- MASSIVE compiler warnings cleanup.		  ( Andreas Jaeger )
+						  ( Robbie Williamson )
+- Corrected library linking at build time.	  ( Andreas Jaeger )
+- Added descriptions to first line of all	  ( Robbie Williamson )
+  runtest scenarios.
+- Commented out 2 cases in syslog11 test that     ( Paul Larson        
+  clear the dmesg buffer.                           Robbie Williamson )
+- Updated fs_maim to use ext3 and reiserfs.	  ( Airong Zhang )
+- Removed "\n"s from testcase outputs.		  ( Dan Kegel )
+- Corrected direct_io tests to compile a dummy	  ( Vasan Sundar )
+  program if O_DIRECT is not defined & return
+  TCONF. 
+- Changed stress_floppy to use `cp` instead of    ( Robbie Williamson )
+  `ln` with its data directory.
+- Applied IA64 specific patch to shmt02, shmt04,  ( Jacky Malcles )
+  shmt05, shmt06, shmt07.
+- Relocated the module tests to .../kernel/module ( Paul Larson )
+- Removed module tests from syscalls scenario	  ( Paul Larson )
+  file.
+- Corrected the stack management in clone tests.  ( Chris Dearman )
+- Corrected the pids casting from int to pid_t	  ( Jaideep Dharap )
+  in fcntl17.
+- Applied fix to flock03 to have the file 	  ( Matthew Wilcox )
+  descriptor passed to the child.
+- Enabled the validation section of getgroups03.  ( Robbie Williamson )
+- Added code to getsid02, setpriority04, & 	  ( Robbie Williamson )
+  wait402 to use PID_MAX_DEFAULT if PID_MAX is
+  not defined.
+- Fixed gettimeofday01 for gcc-3.2 quirk with     ( Andi Kleen
+  x86-64.					    Paul Larson )
+- Fixed msgctl08 and msgctl09 to check for the	  ( Dan Kegel )
+  `ipcs` command before trying to use it.
+- Added IA64 specific code to shmat01.		  ( Jacky Malcles )
+- Fixed problem with kill11 false failure with	  ( Paul Larson )
+  some compilers.
+- Changed llseek tests to call lseek64.		  ( Andreas Jaeger )
+- Replaced calls to time() with calls to 	  ( Dan Kegel )
+  gettimeofday() in nanosleep01 to help avoid
+  race conditions.
+- Removed race condtions in recv01, recvfrom01, & ( Dan Kegel )
+  recvmsg01.
+- Replaced setegid() call with setregid() call in ( Robbie Williamson )
+  setresgid01.
+- Added code to check for NR_socketcall before	  ( Andi Kleen )
+  executing the socketcall tests.
+- Fixed swapon02 for correct execution on 2.5 	  ( Susanne Wintenberger )
+- Fixed system specific build problem with 	  ( Paul Larson )
+  swapon02 
+- Corrected the MININT section of abs01.	  ( Robbie Williamson )
+- Moved generate() into main.c for the float_*	  ( Robbie Williamson )
+  tests. 
+- Explicitly set the stacksize in main.c for the  ( Robbie Williamson )
+  float_* tests.
+- Removed optimization from building the float_*  ( Robbie Williamson )
+  tests.
+- Relocated netpipe-ipv6 from ipv6/tools to the	  ( Robbie Williamson )
+  top-level /tools directory.
+- Adjusted send and receive buffers for 	  ( Robbie Williamson )
+  sendfile01 to PATH_MAX.
+ 
+
+
+LTP-20030306
+
+- Changed IDcheck.sh to only prompt for id	  ( Robbie Williamson )
+  creation if the user is root.
+- Added LVM test execution scripts.		  ( Marty Ridgeway )
+- Added system stress execution script.		  ( Robbie Williamson )
+- Added tst_kvercmp() API to allow test		  ( Paul Larson )
+  creators to query the kernel version.
+- Removed all external int declarations of	  ( Anton Blanchard,
+  "errno" and replaced with includes of errno.h     Susanne Wintenberger,
+						    Robbie Williamson )
+- Replaced usage of sigaction() with signal()	  ( Nathan Straz )
+  in `pan`.
+- Ported and merged all tests from the Open	  ( Robbie Williamson ) 
+  POSIX* Testsuite:
+    pthreads
+    semaphores
+    timers
+    clock()
+    nanosleep()
+    raise()
+    sigsetops
+- Added flock06 test.				  ( Matthew Wilcox )
+- Added ipchains and dhcpd (server) tests.	  ( Manoj Iyer )
+- Patched Makefiles to stop execution on errors.  ( Vasan Sundar )
+- Patched Makefiles to allow non-root users to	  ( Robbie Williamson )
+  run 'make install'.  
+- Fixed 'ar' test to use CC defintion in 	  ( Anton Blanchard )
+  Makefile.
+- Corrected typos in install section of 	  ( Manoj Iyer )
+  commands/fileutils/<test> Makefiles.
+- Added tests for gzip/gunzip.			  ( Manoj Iyer )
+- Added tests for unzip.			  ( Manoj Iyer )
+- Applied patch to fsstress's Makefile to	  ( Anton Blanchard )
+  define _GNU_SOURCE to allow O_DIRECT. 
+- Applied changes to allow testcases to be	  ( Susanne Wintenberger )
+  GCC 3.3 compliant.
+- Fixed semaphore initialization bug in sem02.    ( Jacky Malcles )
+- Applied patch to mem/mtest07/shm_test.c to	  ( Chris Dearman )
+  correct character buffer variable: buff.
+- Fixed hangup01 to initialize variable,	  ( Robbie Williamson )
+  usrstr.len, to avoid junk data storage.
+- Applied patch to clone01 to allow test to	  ( Andi Kleen )
+  be more architecture independent.
+- Added kernel checking code to module tests.	  ( Paul Larson )
+- Applied 31bit emulation s390x patch to 	  ( Susanne Wintenberger )
+  delete_module02 and query_module03.
+- Fixed cleanup section of ftruncate01.		  ( Robbie Williamson )
+- Applied patch to gettimeofday01 to not allow	  ( Andi Kleen )
+  execution on x86_64 architectures.
+- Added x86_64 as valid architecture for ioperm() ( Andi Kleen )
+  and iopl() tests.
+- Applied patch to semctl() tests to correctly 	  ( Anton Blanchard )
+  test the ipc call.
+- Removed unspecified/undocumented case from      ( Anton Blanchard )
+  munlock01.    
+- Fixed personality02 test.			  ( Paul Larson )
+- Applied MIPS specific architecture patch to     ( Chris Dearman )
+  profil01.
+- Removed unspecified/undocumented case from      ( Robbie Williamson )
+  sendmsg01.
+- Applied patch to swapoff() and swapon() 	  ( Jacky Malcles )
+  testcases to allow correct execution on IA64
+- Applied patch to sysfs01 to allow execution on  ( Susanne Wintenberger )
+  64bit machines.
+- Added test for ustat().			  ( Aniruddha Marathe )
+- Patched float_ tests to generate datafiles      ( Robbie Williamson )
+  during execution.
+- Added test for iproute.			  ( Manoj Iyer )
+- Added test for xinetd.			  ( Manoj Iyer )
+- Added test for traceroute.			  ( Manoj Iyer )
+ 
+
+
+LTP-20030206
+
+- Applied cross-compiler patch for top-level      ( V.R. Sundar ) 
+  Makefile.
+- Added additional runtime options to the         ( Manoj Iyer &
+  "runalltests.sh" script.     	          	    Robbie Williamson )
+- Corrected runalltests.sh -l option to require   ( Paul Larson )
+  an absolute path.
+- Added additional runtime and output options     ( Manoj Iyer )
+  to `pan`.
+- Added hyperthreading tests.  			  ( Sonic Zhang )
+- Added ftruncate04 tests.			  ( Robbie Williamson )
+- Changed top-level Makefiles to not require      ( Robbie Williamson )
+  updating everytime a directory is added.
+- Applied s390/64-bit enablement patch.		  ( Susanne Wintenberger )
+- Applied 64bit patch to stress_cd.		  ( Jay Turner )
+- Applied optimization patches (-O2).	  	  ( Mikael Starvik &
+						    V.R. Sundar )
+- Added mmapstress testsuite.			  ( Ananda Venkataraman )
+- Added new testcases to test shared library      ( Manoj Iyer )
+  libmm.
+- Applied patch to mem01 to allow test to run     ( Jacky Malcles )
+  on 2.4 and 2.5 kernels.
+- Changed sched_stress testsuite from using	  ( Robbie Williamson )
+  the bootfile, to generating its' own
+  datafile.
+- Corrected cleanup section of abort01 test.      ( Robbie Williamson )
+- Added code to acct(2) tests to check for        ( Robbie Williamson )
+  BSD accounting before execution.
+- Corrected description of flock03.    	   	  ( Robbie Williamson )
+- Added code to handle formatting issues with     ( Robbie Williamson )
+  gethostid01 test.
+- Applied patch to ioperm(2) & iopl(2) tests to	  ( V.R. Sundar ) 
+  check for IA32 architecture before executing.
+- Added code to msgctl08 and msgctl09 to ensure   ( Robbie Williamson )
+  correct and better execution with respect to
+  message queue limits.
+- Fix recvfrom01 & recvmsg01 to test for the      ( Paul Larson )
+  correct expected errors and their associated 
+  returns.
+- Applied patch to sendfile02 to allow the test   ( V.R. Sundar )
+  to function correctly and keep track of its' 
+  children.  
+- Applied patch to setrlimit01 to test for        ( V.R. Sundar )
+  SIGXFSZ
+- Applied patch to swapoff02 and swapon02 to      ( Susanne Wintenberger )
+  allow the test to use /dev/tty, instead of
+  /dev/mouse.
+- Applied buffer overflow patch to swapon02.      ( Chris Dearman )
+- Added code to fptest03 to check endianess       ( Robbie Williamson )
+  before defining unions.
+- Added testsuite for multi-threaded core dump    ( Guo Min )
+  kernel patch.
+- Added netpipe as a network traffic generator    ( Robbie Williamson )
+  tool.
+- Added `cpio` command test.			  ( Manoj Iyer )
+- Added `ln` command test.			  ( Manoj Iyer )
+- Added `cp` command test.			  ( Manoj Iyer )
+- Added `mkdir` command test.			  ( Manoj Iyer )
+- Added `mv` command test.			  ( Manoj Iyer )
+- 
+
+LTP-20030110
+
+- Added New test case to test 'file' command.     ( Manoj Iyer )
+- Added new test to test basic functionality of   ( Manoj Iyer )
+  CRONTAB, CRON etc.
+- Added new test case to test eject command       ( Manoj Iyer )
+- Added new tests to test logrotate               ( Manoj Iyer )
+- Added new testcase to test basic functionality  ( Manoj Iyer )
+  of tar command.
+- Fixed mem01: The free memory size was being     ( Robbie Williamson )
+  incorrectly calculated, plus it could not
+  handle large amounts of memory...now using
+  long int, instead of int.
+- Fixed mem01: Test was not cleaning up correctly ( Robbie Williamson )
+  after a failure.
+- Initial checkin of shmt, shared memory tests    ( Robbie Williamson )
+  from SPIE suite
+- Initial checkin of pty testcases: hangup01(),   ( Robbie Williamson )
+  ptem01() and pty01() from SPIE testsuite.
+- Added code to abort01.c to use the              ( Robbie Williamson )
+  tst_tmpdir()/tst_rmdir() APIs
+- Added ported abort() test                       ( Ananda Venkataraman )
+- Added adjtimex() tests                          ( Saji Kumar )
+- Added capget() tests                            ( Saji Kumar )
+- Added capset() tests                            ( Saji Kumar )
+- Added ported test, creat08                      ( Airong Zhang )
+- create08 was initially ported to create users   ( Robbie Williamson )
+  and groups that it needed. Rewrote the test to
+  use existing users/groups that are checked for
+  when the LTP is installed.
+- Applied patch to create_module02 from creator   ( T.L.Madhu )
+- Applied patch to delete_module02 from creator   ( T.L.Madhu )
+- Added code to delete_module03 to allow tests to ( Robbie Williamson )
+  execute under pan.
+- Applied patch to delete_module03 from creator   ( T.L.Madhu )
+- Added ported dup06 and dup07 tests              ( Airong Zhang )
+- Added ported dup202 and dup205 tests            ( Airong Zhang )
+  and cleaned up some other files
+- Initial checkin of fdatasync() tests            ( T.L. Madhu )
+- Added new flock04 and flock05 tests             ( Vatsal Avasthi )
+- Added ported fmtmsg() test                      ( Ananda Venkataraman )
+- Added functional test to gethostid01 to compare ( Paul Larson )
+  result from gethostid() versus the hostid
+  command
+- Initial checkin of getrusage() tests            ( Saji Kumar )
+- Added ioperm() tests                            ( Subhabrata Biswas )
+- Added iopl() tests                              ( Subhab Biswas )
+- Added ported kill() tests                       ( Ananda Venkataraman )
+- Added ported mallopt() test                     ( Ananda Venkataraman )
+- Added ported memcmp() test                      ( Ananda Venkataraman )
+- Added ported memcpy() test                      ( Ananda Venkataraman )
+- Added ported memset() test                      ( Ananda Venkataraman )
+- Fixed mkdir09: the getopts() call was returning ( Robbie Williamson )
+  it's -1 to a char variable.  This was incorrect
+  and causing the test to loop forever on certain
+  architectures.
+- Initial checkin of munlockall() tests           ( Sowmya Adiga )
+- Fixed nftw64: tst_rmdir was in the wrong        ( Robbie Williamson )
+  location.
+- Added ported open09() test                      ( Airong Zhang )
+- Initial checkin of prctl() tests                ( Saji Kumar )
+- Added ported profil() test                      ( Ananda Venkataraman )
+- Initial checkin of ptrace() tests               ( Saji Kumar )
+- Added code to query_module tests to allow       ( Robbie Williamson )
+  execution under pan.
+- Initial checkin of reboot() tests               ( Aniruddha Marathe )
+- Initial checkin of sched_rr_get_interval tests  ( Saji Kumar )
+- Added setresgid() tests                         ( T.L. Madhu )
+- Fixed setrlimit03 to work on 2.5 and cleanup    ( Paul Larson )
+- Added socketcall() tests                        ( Adiga Sowmya )
+- Added ported string.h test string01             ( Ananda Venkataraman )
+- Added swapoff() tests                           ( Aniruddha Marathe )
+- Added swapoff() tests                           ( Aniruddha Marathe )
+- Added swapon() test                             ( Aniruddha Marathe )
+- Made corrections to swapon02 to make sure the   ( Robbie Williamson )
+  child exits.
+- Added ported syscall() test                     ( Ananda Venkataraman )
+- Removed an erroneous testcase in sysconf01 and  ( Robbie Williamson )
+  corrected a typo issue.
+- Initial checkin of sysfs() tests                ( Aniruddha Marathe )
+- Made changes to allow the syslog tests to       ( Robbie Williamson )
+  execute in pan and corrected a bug in backup
+  code for syslog.conf original file.
+- Added syslog11 & syslog12 tests                 ( T.L. Madhu )
+- Fixed syslogtst if-statement comparing a file   ( Robbie Williamson )
+  descriptor to a hardcoded number was changed to
+  allow the test to run under pan.
+- Changed the file opened for the 6th case in     ( Robbie Williamson )
+  syslogtst.
+- Added ported abs() test                         ( Ananda Venkataraman )
+- Added ported atof() test                        ( Ananda Venkataraman )
+- Added ported nextafter() test                   ( Ananda Venkataraman )
+- Corrected bug in cleanup section of fsx.sh      ( Robbie Williamson )
+- Added code to rusers01 to change a FQDN in      ( Robbie Williamson )
+  RHOST to short name.
+- Fixed testsf_c bug in char* not large enough to ( Robbie Williamson )
+  hold argv[4] string.
+- Added command line version of LTP harness APIs  ( Manoj Iyer )
+  these commands will print LTP test results in
+  LTP harness format just like the ones printed
+  by C testcases.  These commands can be used in
+  shell scripts and other non-C testcases.
+- Added load generator tool, stress               ( Amos Waterland )
+- Modified runalltests.sh to print default        ( Manoj Iyer )
+  settings
+- Modified runalltests.sh to run LTP under stress ( Manoj Iyer )
+
+
+
+LTP-20021210
+------------
+
+- Added 5 new sched_setparam() tests              ( Saji Kumar )
+- Added new syslog() tests.                       ( David Barrera )
+- Fix compile errors with *_module tests          ( Paul Larson )
+- Added additional semctl tests, semctl06 and     ( David Barrera )
+  semctl07.
+- Added additional msgctl tests.                  ( David Barrera )
+- Added mkdir09.                                  ( David Barrera )
+- Added mem02.                                    ( David Barrera )
+- Added floating point tests, fptest01, fptest02, ( Jacky Malcles )
+  fptest03.
+- Added inode01 and inode02                       ( Robbie Williamson )
+- Added vmtests, data_space and stack_space.      ( Robbie Williamson )
+- Added page tests, page01 and page02.            ( Robbie Williamson )
+- Added sysconf() test.                           ( Robbie Williamson )
+- Added rename14                                  ( Robbie Williamson )
+- Added nftw() tests.                             ( Robbie Williamson )
+- Added confstr() test.                           ( Robbie Williamson )
+- Added acct() tests.                             ( Robbie Williamson )
+- Added flock03 to try relocking after unlocking. ( Paul Larson )
+  To reproduce bug #7 in osdl's bugzilla.
+- Corrected a typo in ar01.  A "=" was used,      ( Robbie Williamson )
+  instead of an "==" found by Airong Zhang.
+- Added 3 new sched_getparam tests                ( Saji Kumar )
+- Added query_module() tests                      ( T.L.Madhu )
+- Added 2 new flock() tests                       ( Vatsal Avasthi )
+- Added munlock() tests                           ( Nirmala Devi Dhanasekar )
+- Added umount() tests                            ( Nirmala Devi Dhanasekar )
+- Added mount tests                               ( Nirmala Devi Dhanasekar )
+- Added 2 new tests for sched_get_priority_min    ( Saji Kumar )
+- Added 2 new tests for sched_get_priority_max    ( Saji Kumar )
+- patch for sched_setscheduler01 to add           ( Saji Kumar )
+  a test case for calling sched_setscheduler()
+  with an invalid priority
+- Added mlockall() tests                          ( Nirmala Devi Dhanasekar )
+- Added delete_module tests                       ( T.L.Madhu )
+- fix to readlink04.c. was creating a             ( Robbie Williamson )
+  testfile called "testfile" in /, instead of the
+  temp dir created for the test.
+- Added getdomainame test                         ( Saji Kumar )
+- warning cleanup patches. removed additional     ( Saji Kumar )
+  warnings created when -Wall option used.
+  also fixed Makefiles to correctly locate
+  the libraries and header files necessary for
+  compilation.
+- Added 6 new clone() tests                       ( Saji Kumar )
+- PPC fixes to ar, semctl04, and read02           ( Anton Blanchard )
+- MULTIPLE cleanups and fixes                     ( Ihno Krumreich )
+- Increased the default setting for MAXIDS number ( Robbie Williamson )
+  to 2048 in semget05.
+- Test was running to /dev/tty3, which does not   ( Robbie Williamson )
+  exist on some Linux installations. changed it
+  to /dev/tty for better general use.
+- Added create_module tests                       ( T.L.Madhu )
+- patch to cleanup warnings in syscall tests      ( Saji Kumar )
+- Corrected typo in rusers01                      ( Robbie Williamson )
+- Replaced sigset() with sigaction() in write04.  ( Manoj Iyer )
+
+
+
+LTP-20021107
+------------
+- Added "setdomainname01", "setdomainname02",     ( Saji Kumar )
+  and "setdomainname03" to "syscalls" runtest file
+- Added "sethostname01", "sethostname02",         ( Suresh Babu )
+  and "sethostname03" to "syscalls" runtest file
+- Fixed bug introduced in "fsstress.c"            ( Andi Kleen, Andrew Morton )
+- Fix "chdir03.c" to remove unintentional \n in   ( Paul Larson )
+  the directory name
+- Added code to remove the tmp test dir           ( Robbie Williamson )
+  in "fcntl11.c"
+- fix for "shmctl01.c" to get rid of the shmdt    ( Manfred Spraul )
+  failures in "shmctl01"
+- Fix for "readdir01" slightly incorrect errno    ( Paul Larson )
+  handling
+- Back out "readv01", "readv02" changes to        ( Paul Larson )
+  expect EINVAL when count==0.  Kernel is going 
+  to keep the old behaviour.
+- Fix for "waitpid02". uses undefined div by      ( Paul Larson )
+  0 behaviour 
+- Revert "writev01.c" back to not expect EINVAL   ( Paul Larson )
+  when count==0
+- Fix for "mc_commo". Changed a 'ps -ef' command  ( Robbie Williamson )
+  to 'ps -ewf' to ensure that a grep finds the 
+  info it needs.
+- Fix in mc_member. Corrected typo causing false  ( Robbie Williamson )
+  pass. Found by Li Ge <lge@us.ibm.com>
+- Fix in "tcpdump01". Removed erroneous INTERFACE ( Robbie Williamson )
+  declaration.
+- Fix tools/ltprun to use the new runalltests     ( William Jay Huie )
+  semantics
+- Added fsxtest02.  Similar test to fsxtest, but  (Robbie Williamson)
+  this test runs fsx-linux on a file created in 
+  the $TCtmp directory. No unformatted partition 
+  required.
+
+
+
+LTP-20021002
+------------
+- Added "shmctl04" to test the SHM_INFO command  ( Mingming Cao )
+- Fix for improper child exit in "execve02"      ( Colin Gibbs )
+- Fix for "nanosleep02" to eliminate false       ( Andreas Arcangeli )
+  positives
+- Fix for "personality01 to undef the personality( Marcus Meissner )
+  macro before calling personality()
+- Fix for "sendfile02" that adds a waitpid() call( Susanne Wintenberger )
+  to guarantee child exit before the test ends
+- Fix for /tools/rand_lines.c that eliminates an ( Nathan Straz )
+  IA64 compile time warning
+- Added "shmctl04" to the "syscalls" runtest file( Paul Larson )
+- Removed test 8 from "diotest4". Opening a      ( Paul Larson )
+  directory for direct I/O is not allowed.
+- Fix for PPC cross compile issues applied to:   ( Paul Larson )
+    "mmap01"
+    "pth_str01"
+    "pth_str03"
+    "shmem_test_04"
+- Fix for "fcntl01" to allow it to run without   ( Paul Larson )
+  predefining the file descriptors
+- Fix for "readv02" to check for EINVAL on       ( Paul Larson )
+  2.5.35 and above kernels
+- Fix for "stime01" to allow the checked time to ( Paul Larson )
+  be off +1 second
+- Fix for "writev01" to check for EINVAL on      ( Paul Larson )
+  2.5.35 and above kernels
+  
+
+
+
+LTP-20020910
+------------
+- Fix path in runpan.sh                          ( Paul Larson )
+- runtest/syscalls:
+        a.Removed the {} from the environment    ( Robbie Williamson )
+          variables
+        b.Comment out stime01, since it sets     ( David Barrera )
+          the system time forward and could
+          cause problems with several other
+          tests if it's running at the same
+          time (-x nn)
+- Renamed the fsx-linux test on nfs to           ( Robbie Williamson )
+  "nfsx-linux"
+- fsxtest: Added code to handle JFS.             ( Robbie Williamson )
+- ld01: Made the diff case insensative for       ( Robbie Williamson )
+  cross-platform compatibility.
+- Removed obsolete test, "ulimit", from          ( Robbie Williamson)
+  automatic build and install.
+- Moved the 'chown' commands to "install         ( Robbie Williamson )
+  section in the Makefile of fchmod
+- Applied patches for s390                       ( Susanne Wintenberger )
+- Applied patches for IA64                       ( Jacky Malcles )
+- Applied patch for adding some missing includes ( Andreas Jaeger )
+  to remove warnings about missing prototypes
+- Applied x86-64 patch for ldd01                 ( Andreas Jaeger )
+- Fix for ar01 hang when filesystem is full      ( Paul Larson )
+- Make ltp run with uClibc                       ( Steven J. Hill )
+- Fix compiler warnings in various tests         ( Xiao Feng Shi )
+- Clean up many of the mktemp warnings           ( Paul Larson )
+  And use mkstemp in tst_tmpdir()
+- Applied pan/logfile/tools patches.             ( William J. Huie )
+- Use regular instead of mandatory locks in      ( Matthew Wilcox )   
+  fcntl09, fcntl10, fcntl11 to fix with NFS
+- Fix pids in fcntl11, fcntl19, fcntl20, fcntl21 ( Paul Larson )
+  to be pid_t instead of short for 2.5 compat
+- Add command line options to runalltests.sh to  ( Randy Hron, 
+  allow setting of various pan options and         Paul Larson,
+  changing the temp directory                      Nate Straz )
+- Added automation documentation to /doc         ( Jeff Martin )
+- Patched nanosleep02.c to correctly test the    ( Andrea Arcangeli )
+  functionality and avoid false positives.
+
+
+LTP-20020813
+------------
+* Fixes
+-------
+- Fix runtest/commands to export the	 	( Paul Larson	     )
+  correct TCdat
+- Add some missing includes and remove 		( Andreas Jaeger     )
+  warnings about missing prototypes
+- Add better initialization to waitpid05,	( Robbie Williamson  )
+  signal04, getgroups01
+- Fix sockioctl01 to work even if fd0 isn't	( Paul Larson        )
+  open
+- Fix mmstress path problems, now uses execvp	( Paul Larson        )
+
+LTP-20020807
+------------
+
+* New Additions
+---------------
+- Added new testcases of link07,fcntl22,link06          ( Bull Group        )
+- Added linux kernel scheduler latency tester           ( Davide Libenzi    )
+- Database test tool 'dbgrinder'                        ( James Kenefick    )
+
+* Fixes
+-------
+- Several fixes for 64-bit                              ( Gerhard Tonn      )
+- fstat05,llseek fixes for MIPS                         ( Carsten Langgaard )
+- Fixed check in getgroups03 that was causing 
+  failures if 'nobody' isn't in any secondary groups    ( Paul Larson       )
+- Fix sendfile02 to work with the new 2.5 kernels which 
+  no longer allow it to fall back on write              ( Paul Larson       )
+- Changed the hardcoded ip address to 127.0.0.1 in 
+  recvfrom01-sctp-udp-ipv6                              ( Robbie Williamson )
+- Added instance and time command line options in
+  runalltests.sh                                        ( Jeff Martin       )
+- Fixed the algorithm description for fork07,fork12     
+  Reduced the output of fork07 to a finite amount       ( Nathan Straz      )
+- Added fork12 to runtest/crashme.                      ( Nathan Straz      )
+- Added option for interface selection in tcpdump01     ( Robbie Williamson )
+
+
+LTP-20020709
+-----------
+* New Additions
+---------------
+- New testcases fcntl22, link06, link07,
+  mknod09                                        ( Bull Group         )
+- New sctp tests                                 ( Robert Williamson  )
+- New direct IO tests                            ( Narasimha Sharoff  )
+- mlock01 and mlock02 tests                      ( Paul Larson        )
+
+* Fixes
+----------------
+- MIPS fixes; write01                            ( Shaobo Li          )
+- patches for 64bit and warnings                 ( Ihno Krumreich     )
+- fixes for ftruncate02, fchown03                ( Robert Williamson  )
+  - updates to LTP scripts                         ( Nathan Straz       )
+
+LTP-20020607
+------------
+* New Additions
+- Tests if gettimeofday02 is monotonous      ( Andi Kleen          )
+- Added new tests readv03, setgroups04
+  and truncate04                             ( Group Bull          )
+
+* Fixes
+----------------
+- Bug fixes and ports for MIPS               ( Johannes Stezenbach )
+- Fixes BROKs on 64bit x86,ISO-C complience  ( Andi Kleen          )
+- 64 bit bug fixes and remove warnings
+  on 64 bit arch                             ( Ihno Krumreich      )
+- Clean up warnings on s390                  ( William Jay Huie    )
+- Improvements on fstat05 for IA64           ( Group Bull          )
+- Testcase ID clean ups, improvements
+  to mallocstress                            ( Nathan Straz        )
+- Fix warnings and bugs in clisrv
+  and mallocstress   i                       ( Dan Kegel           )
+- Fixed sendfile601 for IPV6                 ( Robert Willionsom   )
+- Fixes for shmctl & mprotect03              ( Paul Larson         )
+- multicast testcase fixes                   ( Ted Cheslak         )
+- Automation: added sar results to ltp_check ( Casey Abell         )
+- Automation: added function to ltp_check    ( Li Ge               )
+
+
+LTP-20020507
+------------
+
+* New Additions
+  - New syscalls tests, chroot, fchdir, fstat 
+    pread, pwrite, and reddir.                      (Bull )
+  - New syscalls test.                              ( Ihno Krumreich )
+
+* Fixes
+  - S390 bug fixes, patches to remove complier 
+    warnings.                                       ( Ihno Krumreich )
+  - S390 bug fixes.                                 ( William Jay Huie )
+  - LTP Automation script updates.                  ( William Jay Huie )
+  - make testcases work without a controlling tty.  
+    for recv01, recvfrom01 and recvmsg01.           ( Paul Larson )
+  - Networking test updates, multiple concurrent
+    runs.                                           ( Robert Williamson )
+  - test01 patch for wrap around at 2gigs           ( Randall Hron )
+  - patches to syscalls test wait402, chdir03	    ( Andreas Jaeger )
+
+
+CVS Bugs closed.
+----------------
+  #545739 fcntl17 failing getting unexep. sig13     ( Paul Larson )
+
+LTP-20020408
+-----------
+* New Additions
+  - Scripts to automate LTP test suite execution.   ( William Jay Huie )
+  - IPV6 port of NetPIPE, network stress tool.      ( Robert Williamson )
+
+* Fixes
+  - Numerous 64-bit updates, remove warnings
+    and errors.                                     ( Andi Kleen )
+  - 64-bit patches to memory and IPC tests.         ( Ihno Krumreich )
+  - 64-bit IA64 port related patches.               ( Jacky Malcles )
+  - patches to remove warnings and bugs.            ( Andreas Jaeger )
+  - mmstress bug: deletes /dev/zero.                ( Sachin Vyas )
+  - sem02: make test remove semids it created.      ( Robert Williamson )
+  - Report missing groups and users in IDcheck.sh   ( Robert Williamson )
+  - expected error modified in mprotect and
+    msync tests.                                    ( Paul Larson )
+  - make testcases work without a controlling tty.  ( Paul Larson )
+
+CVS Bugs closed.
+~~~~~~~~~~~~~~~~
+ #536483 sem02 does not clean up /tmp directory   (Robert Willamson
+
+
+LTP-20020307
+------------
+o	fixed IDcheck.sh to prompt for IDs only when missing (Jay Huie)
+o	added time duration option to pan (Jay Huie)
+o	added 4 more cases to getcwd02 test (Jay Huie)
+o	added time-schedule tool by Richard Gooch under sched test
+	section (Manoj Iyer)
+o	added trace_sched tool under sched test section (Manoj Iyer)
+o	added sigpending02 test to syscalls section (Paul Larson)
+o       created a KNOWN-FAILURES file to document known 
+        test failures (Robbie Williamson)
+o	added sem02 test to ipc section (Robbie Williamson)
+o	added SCTP section to network tests (Robbie Williamson)
+o	added disktest by Brent Yardley to io section (Robbie Williamson)
+o	closed the following bugs:
+	[ #491285 ] recvfrom01 test (Paul Larson)
+	[ #491286 ] recvmsg01 test (Robbie Williamson)
+	[ #505515 ] perf_lan6 test (Robbie Williamson)
+	[ #506536 ] recv01 test (Robbie Williamson)
+	[ #514408 ] chown05 (Dave Engebretsen)
+	[ #511427 ] pread02 test (Paul Larson)
+	[ #516577 ] ftruncate03 test (Jay Huie)
+	[ #523055 ] sched_getscheduler test (Paul Larson)
+	[ #523137 ] sched_setscheduler02 test (Paul Larson)
+	[ #525688 ] sendfile01 (Paul Larson)
+
+
+LTP-20020207
+------------
+o       added support for cross-compiling (Todd Inglett)
+o       added LKML's cache_leak testcase to ltp/scratch (Nate Straz)
+o       added IPv6 support (Robbie Williamson)
+o       added "gethost" to /tools (Robbie Williamson)
+o	fixed the race conditions in the float tests and removed 
+	the sleeps (Robbie Williamson)
+o       enabled non-root make authority (Paul Larson)
+o       separated compilation into "make" and "make install" (Paul Larson)
+o       added ipc_stress test (Manoj Iyer)
+o       added pthreads_stress test (Manoj Iyer)
+o       made changes to support architecture independence (Manoj Iyer & Paul Larson)
+o	closed the following bugs: 
+	504960, 505108, 504613, 504616, 491283, 506689, 508055, 506692, 508074
+	491289, 506662, 511383, 511391, 511427, 511494, 504649, 514050, 512953
+	(Manoj Iyer, Paul Larson, and Robbie Williamson)	
+
+
+LTP-20020108
+------------
+o	fixed IDcheck.sh to work with bash1 (Nate Straz)
+o	updated menu script (Robbie Williamson)
+o	reset errno to 0 at the beginning of TEST macro (Paul Larson)
+o	added floating point stress tests (Bull/IBM)
+o	added fsx-linux NFS tests (Apple)	
+o	define GLIBC_SIGACTION_BUG for sigaction02 (Robbie Williamson)
+o	removed bogus testcase from dup201 test (Paul Larson)
+o	fixed recvfrom01 case 5 (Wayne Boyer)
+o	workaround for smp issue with waitpid12 (Manfred Spraul)
+
+
+LTP-20011206
+------------
+o	necessary users/groups can now be created on installation with 
+	user's permission
+o	added a simple menu-based interface for running the LTP testsuite
+o	fixed negative duration in pan output when -l isn't used
+o	new set of tests under fs-maim
+o	fixed race condition in nfslock01
+o	ar01, ld01, ldd01, nm01, objdump01, and size01 fixed when multiple 
+	copies are run simultaneously
+o	workaround for SIGTTOU hang in ioctl02
+o	shmget03 uses IPC_PRIVATE to make it safe when running multiple copies
+o	compiler warnings and other minor errors fixed in many tests
+
+LTP-20011107
+------------
+o	Many improvements to mtest05 and mtest06 tests
+o	new test nfsstress
+o	included ver_linux in LTP and made it run at the end of test scripts
+o	check for necessary users/groups in Makefile and warn if they don't
+	exist
+o	documented the users and groups necessary for the testcases to run
+o	simplified telnet01 when looking for root prompt
+o	removed incorrect testcase from sendfile03
+o	fixed modify_ldt01 test problems on newer kernels
+o	added setrlimit to unlimit core size in waitpid05 test to work 
+	around systems where this is set to 0
+o	fixed mmstress pthread hang problem
+
+LTP-20010925
+------------
+o	Testcases have been organized into categories in a directory 
+	structure under the testcases subdirectory
+o	About 400 new testcases added covering various system calls
+o	Andreas Jaeger got confirmation from the glibc people that the
+	ulimit test was broken as a result of some changes made in 
+	glibc2.2.5.  Since it's the test that's broken, Nate Straz 
+	removed the offending testcase.
+o	Updated README and INSTALL files
+o	Descriptions of the testcases have been added to the doc 
+	directory and are organized by type (syscalls.txt, fs.txt, etc.)
+
+------------
+2000-09-18 Juan J. Quintela <quintela@fi.udc.es>
+           Aaron Laffin <alaffin@sgi.com>
+
+  * tests/mmap001.c: first checkin of a modified version of
+  mmap001.c from the memtest suite.
+
+2000-09-08  Egor Duda <deo@logos-m.ru>
+
+	* tests/fpathconf01.c: Close opened file at exit.
+	* tests/select01.c: Ditto.
+
+2000-09-08  Andrea Arcangeli <andrea@suse.de>
+  * tests/fcntl09.c, tests/fcntl10.c: Rearrange the F_SETLK test to
+  to correctly use F_RDLCK and F_WRLCK.
+
+2000-09-06  Egor Duda  <deo@logos-m.ru>
+
+	* lib/parse_opts.c (parse_opts): Initialize allocated string
+	to prevent heap corruption.
+
+
+

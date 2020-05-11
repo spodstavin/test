@@ -1,0 +1,290 @@
+
+				disk-stress
+				-----------
+
+The disk-stress program is used to create intense stress on the kernel,
+disk I/O subsystem and mass storage device drivers. It accomplishes this
+by presenting a disk work load to the character (raw) devices of disk
+drives.
+
+I/O latencies may optionally be collected and analyzed via per disk
+histograms.
+
+If writing is enabled, disk-stress must be pointed at devices that are
+otherwise unused (e.g. not mounted for a file system, not the system
+swap partition, not a raw partition of a database, not a constituent
+of a RAID).
+
+The program has six options:
+
+	-n noise-level
+		This option allows the user to specify the verbosity level
+		of the program. The default level is 0, quiet. The levels
+		are as follows:
+
+		0	quiet
+		1	show the internal phases and their statuses
+		2	output a device summary
+		3	log each I/O operation
+
+	-p policy-name
+
+		This option allows the user to adjust the POSIX thread
+		scheduling parameter specified for the creation of each
+		test thread. If not specified the system specified
+		default policy is used. The choices are:
+
+			SCHED_RR
+				This selects the round robin scheduling
+				policy. This should be the prefered choice
+				but be aware that somewhat cryptic errors
+				may occur if the user is not effectively
+				root.
+
+			SCHED_FIFO
+				This selects the first-in-first-out
+				scheduling policy.
+
+			SCHED_OTHER
+				This selects the "other" policy which
+				may or may not be different from the
+				system default policy. This is usually
+				not a good choice for this program.
+
+		This option will only appear if the POSIX threads
+		implementation on the target machine supports thread
+		scheduling policy adjustment.
+
+	-r random-number-generator-seed
+
+		This option allows the user to specify the initial seed
+		of the random number generator used for random seeking.
+		The argument is a signed integer.
+
+	-s stack-size
+		This option allows the user to specify the stack size of
+		each test thread. This option will only appear if the
+		POSIX threads implementation on the target machine supports
+		thread stack size adjustment. If the specified size is less
+		than the POSIX implementation default size, an error will
+		be printed and the minimum size identified. The argument
+		is an unsigned integer, specifying the stack size in K-bytes.
+
+	-v
+		This option outputs the version information about the program
+		and exits.
+
+	-y
+		This option allows the user to enable yacc yydebug output.
+		It can sometimes be useful in understanding syntax errors
+		(and debugging errors in the grammar).
+
+The disk-stress program expects a control file as a command line argument.
+The control file is used to specify the disk devices to be tested and the
+parameters associated with their testing.
+
+The default testing parameters are:
+
+The default block size is 4096 bytes.
+The default starting block number (offset) is 0.
+The default test area size will automatically use the entire disk.
+The default number of I/O operations per thread is 10000.
+The default number of threads (tests) per disk is 1.
+The default test access pattern is random.
+The default write verification option is disabled.
+The default read fraction is 1.0 (no writes).
+By default latency data collection is disabled. If enabled:
+	The default latency histogram upper bound is 1.0 second.
+	The default number of latency hhistogram bins is 1000.
+
+
+The control file is processed sequentially. A change to a default parameter
+will remain in effect until it is changed or end-of-file is encountered.
+
+The testing defaults control statements are:
+
+default-block-size		integer-block-size-bytes
+
+	The default I/O block size is specified. The size may be specified
+	in bytes, multiples of a 'K' (e.g. 64k, 22K) or multiples of a 'B'
+	(e.g. 32b, 128B). A 'K' is 1024 bytes; a 'B' (block) is 512 blocks.
+	If the block size is specified in bytes it must be a multiple of
+	512, the "fundamental" block size.
+
+default-read-fraction		floating-point-number
+
+	The default read fraction is specified. A read fraction of 0.0
+	specifies all writes. A read fraction of 1.0 specifies all reads.
+	A read fraction between 0.0 and 1.0 specifies the statistical
+	read fraction.
+
+default-starting-block		integer-block-number
+
+	The default testing area starting block number is specified.
+
+default-test-area-size		integer-block-number
+
+	The default test area size (in blocks) is specified.
+
+default-requests-per-thread	integer-number
+
+	The default number of I/O operations per test thread is specified.
+
+default-threads-per-disk	integer-number
+
+	The default number of test threads per disk is specified.
+
+default-access-pattern		random or sequential
+
+	The default test access pattern is specified.
+
+	If a sequential access pattern is specified and there is more
+	than one test thread per disk, the sequential I/O test will start
+	each thread at a different (random) place within the test area.
+
+	The sequential access pattern will "wrap around" the test area in
+	order to satisfy the number of requests if the number of requests
+	is larger than the test area.
+
+default-write-verification	enabled or disabled
+
+	The default write verification state is specified.
+
+	Enabling write verification will slow down the testing process
+	(slightly) since the each portion of the test area under test
+	must be locked for the duration of the write verification and then
+	unlocked. 
+
+default-histogram-upper-bound	floating-point-number
+
+	The default upper bound for histogram latencies, in seconds, is
+	specified.
+
+	Specifying this command will enable metrics collection and reporting.
+
+default-histogram-bins		integer-number
+
+	The default number of histogram bins is specified.
+
+	Specifying this command will enable metrics collection and reporting.
+
+
+
+
+Each disk to be tested must be specified via a "disk" statement:
+
+disk	block-device-name raw-device-name
+
+	The block device name must be a disk block device that honors the
+	BLKGETSIZE ioctl (size of a partition in 512 byte blocks).
+
+	The raw device name must be the device node associated with the
+	specified block device. The association is created with the
+	raw command (see "man 8 raw" for complete information).
+
+	A device name that contains embedded whitespace characters may be
+	enclosed in double quote characters.
+
+	DOUBLE CHECK YOUR DISK STATEMENTS AND THE RAW DEVICE ASSOCIATIONS
+	BEFORE STARTING A TEST (ESPECIALLY IF WRITING IS ENABLED)!
+
+	FOR OPTIMAL OPERATION THERE SHOULD BE ONLY ONE PARTITION 
+	(LOGICAL OR PHYSICAL) PER PHYSICAL DISK TESTED.
+
+	I/O LATENCY COLLECTION AND REPORTING MAY BE DIFFICULT TO
+	INTERPRET WHEN MORE THAN ONE THREAD PER DISK IS SPECIFIED.
+
+
+
+
+A "disk" statement may be followed by options specific to that disk.
+Options are specified by following the "disk" statement with a line
+containing an open brace, one or more lines containing individual options
+and finally a line containing a close brace.
+
+The option statements are:
+
+block-size		integer-block-size-bytes
+
+	The I/O block size for this disk is specified.
+
+read-fraction		floating-point-number
+
+	The read fraction for this disk is specified.
+
+starting-block		integer-block-number
+
+	The test area starting block number for this disk is specified.
+
+test-area-size		integer-block-number
+
+	The test area size (in blocks) for this disk is specified.
+
+requests-per-thread	integer-number
+
+	The number of I/O operations per test thread for the disk is
+	specified.
+
+threads-per-disk	integer-number
+
+	The number of test threads per disk for this disk is specified.
+
+access-pattern		random or sequential
+
+	The test access pattern for this disk is specified.
+
+write-verification	enabled or disabled
+
+	The write verification state for this disk is specified.
+
+histogram-upper-bound	floating-point-number
+
+	The upper bound for histogram latencies, in seconds, for this
+	disk is specified.
+
+	Specifying this command will enable metrics collection and
+	reporting for this disk.
+
+histogram-bins		integer-number
+
+	The number of histogram bins for this disk is specified.
+
+	Specifying this command will enable metrics collection and
+	reporting for this disk.
+
+The '#' is the comment character. All characters starting with the '#'
+through the end of the line are treated as a comment.
+
+
+
+
+
+Here is an example control file designed to create the maximum DMA stress
+on the test system.
+
+default-access-pattern		sequential
+default-block-size		64K
+default-requests-per-thread	100000
+
+disk	block raw	# multiple disk statements as necessary
+
+Here is another example control file that runs random tests on all of the
+disks save one. Disks 1 and 3 inherit the default parameters and disk
+2 overrides some of the defaults.
+
+default-block-size		8K
+default-threads-per-disk	3
+default-read-fraction		0.65
+
+disk block1 raw1
+
+disk block2 raw2
+{
+	access-pattern		sequential
+	threads-per-disk	1
+	requests-per-thread	100000
+	write-verification	enabled
+}
+
+disk block3 raw3
+

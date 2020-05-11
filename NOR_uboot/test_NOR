@@ -1,0 +1,7 @@
+echo ===== U-Boot settings =====
+sf probe
+sf read 80000000 10000
+cp 80000000 81000000 10000
+sf read 80000000 10000
+cmp 81000000 80000000 10000
+echo ===== U-Boot settings =====

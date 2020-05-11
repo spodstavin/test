@@ -1,0 +1,10 @@
+echo ===== U-Boot USB test start =====
+usb start
+usb reset
+usb tree
+usb info
+usb storage
+usb read 80000000 0 20000
+usb write 80000000 0 20000
+echo ===== U-Boot USB test end =====
+
