@@ -11,4 +11,7 @@ make install
 cd ../bonnie++-1.98
 ./configure
 make
-./bonnie++ -d /mnt
+useradd qq
+chown -R qq:qq /mnt/
+./bonnie++  -d /mnt -u qq 
+
