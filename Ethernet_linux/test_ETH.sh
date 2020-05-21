@@ -1,9 +1,4 @@
 #!/bin/bash
-
-cd iperf-3.7
-./configure
-make
-make install
 iperf3 -c 192.168.1.1 -i 1 -t 30
 iperf3 -c 192.168.1.1 -i 1 -t 20 -R
 iperf3 -c 192.168.1.1 -i 1 -t 20 -w 32K -P 4
