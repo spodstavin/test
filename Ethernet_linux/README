@@ -1,0 +1,5 @@
+test_ETH_build.sh - for build the tests
+test_ETH.sh - for the testing. Usage
+./test_ETH.sh <ServerIP>
+for example
+./test_ETH.sh 192.168.1.1
