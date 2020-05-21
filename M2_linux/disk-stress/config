@@ -1,0 +1,5 @@
+default-access-pattern		sequential
+default-block-size		64K
+default-requests-per-thread	100000
+
+disk	block raw	# multiple disk statements as necessary

@@ -1,0 +1,12 @@
+For using test script, create script image on the host
+
+[user@localhost tests]$mkimage -A arm64 -O linux -T script -C none -n "u-boot commands" -d test_M2 test_M2.scr
+
+Then load script image to the board using tftp on the board
+
+=>tftp 80000000 test_M2.scr
+
+Then execute the script
+
+=>source 80000000
+

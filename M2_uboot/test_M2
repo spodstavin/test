@@ -1,0 +1,10 @@
+echo ===== U-Boot scsi test start =====
+scsi info
+scsi reset
+scsi scan
+scsi device
+scsi part
+scsi read 80000000 0 20000
+scsi write 80000000 0 20000
+echo ===== U-Boot scsi test end =====
+

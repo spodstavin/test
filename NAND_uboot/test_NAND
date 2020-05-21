@@ -1,0 +1,10 @@
+echo ===== U-Boot mmc test start =====
+mmc list
+mmc dev
+mmc erase 0 100000
+mmc rescan
+mmc hwpartition
+mmc read 80000000 0 20000
+mmc write 80000000 0 20000
+echo ===== U-Boot mmc test end =====
+
