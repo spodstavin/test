@@ -3,3 +3,12 @@ test_ETH.sh - for the testing. Usage
 ./test_ETH.sh <ServerIP>
 for example
 ./test_ETH.sh 192.168.1.1
+Test via ethrenet loop.
+Put a cable in eth0 and eth1. Do
+root@qoriq-arm64:~# ip netns add target
+root@qoriq-arm64:~# ip link set dev eth1 up netns target
+root@qoriq-arm64:~# ip netns exec target ip address add dev eth1 192.168.26.2/24
+root@qoriq-arm64:~# ip netns exec target iperf3 --server -D
+root@qoriq-arm64:~# ifconfig eth0 192.168.26.1 up
+root@qoriq-arm64:~# ./test_ETH.sh 192.168.26.2 > log.txt
+
