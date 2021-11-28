@@ -6,7 +6,6 @@ setenv serial_number 001
 setenv ipaddr $1
 setenv ip2addr $2
 setenv serverip $3
-saveenv
 setenv ethact eth1
 ping $3
 setenv ethact eth0
