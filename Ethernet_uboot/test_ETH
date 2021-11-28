@@ -8,6 +8,13 @@ setenv ip2addr $2
 setenv serverip $3
 setenv ethact eth1
 ping $3
+error=$?
+if test "0" != "${error}"; then echo " Ethernet test eth1 failed"; fi
 setenv ethact eth0
 ping $3
-echo ===== U-Boot ethernet test end =====
+error1=$?
+if test "0" != "${error1}"; then echo " Ethernet test eth0 failed"; fi
+if test "0" != "${error}"; then exit 1; fi
+if test "0" != "${error1}"; then exit 1; fi
+echo "All Ethernet tests passed OK"
+exit 0
