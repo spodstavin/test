@@ -1,0 +1,11 @@
+echo ===== U-Boot RTC test start=====
+date $1
+error=$?
+if test "0" != "${error}"; then echo " RTC test set date failed"; fi
+date
+error1=$?
+if test "0" != "${error1}"; then echo " RTC test get date failed"; fi
+if test "0" != "${error}"; then exit 1; fi
+if test "0" != "${error1}"; then exit 1; fi
+echo "All RTC tests passed OK"
+exit 0
