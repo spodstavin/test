@@ -1,7 +1,14 @@
 echo ===== U-Boot USB test start =====
+usb stop
 usb start
 usb reset
-usb tree
-usb info
-echo ===== U-Boot USB test end =====
+setenv ipaddr $1
+setenv ethact r8152_eth		
+ping $2
+error=$?
+if test "0" != "${error}"; then echo "USB test failed"; fi
+usb stop
+if test "0" != "${error}"; then exit 1; fi
+echo "USB test passed OK"
+exit 0
 
