@@ -1,0 +1,9 @@
+echo ===== U-Boot memory test start=====
+date
+mtest
+error=$?
+if test "0" != "${error}"; then echo " mtest memory test  failed"; fi
+date
+if test "0" != "${error}"; then exit 1; fi
+echo "memory test passed OK"
+exit 0
