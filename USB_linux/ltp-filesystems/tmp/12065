@@ -1,2 +1,0 @@
-#2161,12065,/home/user/Downloads/tests/USB_linux/ltp-filesystems/pan/pan -q -e 
-#2205,panorphan,cd $LTPROOT/testcases/kernel/fs/fs_perms ; ./simpletest.sh; cd 

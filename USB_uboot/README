@@ -1,10 +1,10 @@
 For using test script, create script image on the host
 
-[user@localhost tests]$mkimage -A arm64 -O linux -T script -C none -n "u-boot commands" -d test_USB test_USB.scr
+[user@localhost tests]$mkimage -A arm64 -O linux -T script -C none -n "u-boot commands" -d tst_usb tst_usb.scr
 
 Then load script image to the board using tftp on the board
 
-=>tftp 80000000 test_USB.scr
+=>tftp 80000000 tst_usb.scr
 
 Then execute the script
 

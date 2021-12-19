@@ -1,10 +1,10 @@
 For using test script, create script image on the host
 
-[user@localhost tests]$mkimage -A arm64 -O linux -T script -C none -n "u-boot commands" -d test_NAND test_NAND.scr
+[user@localhost tests]$mkimage -A arm64 -O linux -T script -C none -n "u-boot commands" -d tst_nand tst_nand.scr
 
 Then load script image to the board using tftp on the board
 
-=>tftp 80000000 test_NAND.scr
+=>tftp 80000000 tst_nand.scr
 
 Then execute the script
 

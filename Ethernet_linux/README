@@ -1,10 +1,5 @@
-test_ETH_build.sh - for build the tests
-test_ETH.sh - for the testing. Usage
-./test_ETH.sh <ServerIP>
-for example
-./test_ETH.sh 192.168.1.1
-Test via ethrenet loop.
-Put a cable in eth0 and eth1. Do
+Usage:
+Put the cables in eth0 and eth1. Do
 root@qoriq-arm64:~# ip netns add target
 root@qoriq-arm64:~# ip link set dev eth1 up netns target
 root@qoriq-arm64:~# ip netns exec target ip address add dev eth1 192.168.26.2/24
