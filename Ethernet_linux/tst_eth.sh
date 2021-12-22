@@ -1,5 +1,9 @@
 #!/bin/bash
-echo server $1
+ip netns add target
+ip link set dev eth1 up netns target
+ip netns exec target ip address add dev eth1 $1/24
+ip netns exec target iperf3 --server -D
+ifconfig eth0 $2 up
 date
 iperf3 -c $1 -i 1 -t 30
 error0=$?

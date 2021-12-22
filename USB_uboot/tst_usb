@@ -3,12 +3,21 @@ usb stop
 usb start
 usb reset
 setenv ipaddr $1
+setenv ipaddr $2
+setenv serverip $3
 setenv ethact r8152_eth		
-ping $2
-error=$?
-if test "0" != "${error}"; then echo "USB test failed"; fi
+ping $3
+error0=$?
+if test "0" != "${error0}"; then echo "USB0 test failed"; fi
 usb stop
-if test "0" != "${error}"; then exit 1; fi
+usb start
+usb reset
+setenv ethact ax88179_eth
+ping $3
+error1=$?
+if test "0" != "${error1}"; then echo "USB1 test failed"; fi
+usb stop
+if test "0" != "${error0}"; then exit 1; fi
+if test "0" != "${error1}"; then exit 1; fi
 echo "USB test passed OK"
 exit 0
-

@@ -1,20 +1,48 @@
 echo ===== U-Boot ethernet test start=====
-setenv eth1addr 00:04:9f:05:cd:35
-setenv ethaddr 00:04:9f:04:68:b3
-setenv eth2addr 00:04:9f:05:cd:36
-setenv serial_number 001
 setenv ipaddr $1
 setenv ip2addr $2
 setenv serverip $3
-setenv ethact eth1
-ping $3
-error=$?
-if test "0" != "${error}"; then echo " Ethernet test eth1 failed"; fi
 setenv ethact eth0
+ping $3
+error0=$?
+if test "0" != "${error0}"; then echo " Ethernet test eth0 failed"; fi
 ping $3
 error1=$?
 if test "0" != "${error1}"; then echo " Ethernet test eth0 failed"; fi
-if test "0" != "${error}"; then exit 1; fi
+ping $3
+error2=$?
+if test "0" != "${error2}"; then echo " Ethernet test eth0 failed"; fi
+ping $3
+error3=$?
+if test "0" != "${error3}"; then echo " Ethernet test eth0 failed"; fi
+ping $3
+error4=$?
+if test "0" != "${error4}"; then echo " Ethernet test eth0 failed"; fi
+setenv ethact eth1
+ping $3
+error5=$?
+if test "0" != "${error5}"; then echo " Ethernet test eth1 failed"; fi
+ping $3
+error6=$?
+if test "0" != "${error6}"; then echo " Ethernet test eth1 failed"; fi
+ping $3
+error7=$?
+if test "0" != "${error7}"; then echo " Ethernet test eth1 failed"; fi
+ping $3
+error8=$?
+if test "0" != "${error8}"; then echo " Ethernet test eth1 failed"; fi
+ping $3
+error9=$?
+if test "0" != "${error9}"; then echo " Ethernet test eth1 failed"; fi
+if test "0" != "${error0}"; then exit 1; fi
 if test "0" != "${error1}"; then exit 1; fi
+if test "0" != "${error2}"; then exit 1; fi
+if test "0" != "${error3}"; then exit 1; fi
+if test "0" != "${error4}"; then exit 1; fi
+if test "0" != "${error5}"; then exit 1; fi
+if test "0" != "${error6}"; then exit 1; fi
+if test "0" != "${error7}"; then exit 1; fi
+if test "0" != "${error8}"; then exit 1; fi
+if test "0" != "${error9}"; then exit 1; fi
 echo "All Ethernet tests passed OK"
 exit 0

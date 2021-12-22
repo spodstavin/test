@@ -9,6 +9,6 @@ fi
 if [ $error0 -ne 0 ] ; then
   exit 1
 fi
-echo "All memory tests passed OK"
+echo "Memory test passed OK"
 exit 0
 

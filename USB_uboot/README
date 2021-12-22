@@ -1,6 +1,6 @@
 For using test script, create script image on the host
 
-[user@localhost tests]$mkimage -A arm64 -O linux -T script -C none -n "u-boot commands" -d tst_usb tst_usb.scr
+[user@localhost tests]$./mkimage -A arm64 -O linux -T script -C none -n "u-boot commands" -d tst_usb tst_usb.scr
 
 Then load script image to the board using tftp on the board
 
@@ -8,7 +8,7 @@ Then load script image to the board using tftp on the board
 
 Then execute the script
 
-=>source 80000000 <USB ip> <server ip>
+=>source 80000000 <USB0 ip> <USB1 ip> <server ip>
 
 for example
-=>source 80000000 192.168.1.2 192.168.1.1
+=>source 80000000 192.168.1.2 192.168.1.3 192.168.1.1

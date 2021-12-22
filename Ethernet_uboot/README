@@ -1,6 +1,6 @@
 For using test script, create script image on the host
 
-[user@localhost tests]$mkimage -A arm64 -O linux -T script -C none -n "u-boot commands" -d tst_eth tst_eth.scr
+[user@localhost tests]$./mkimage -A arm64 -O linux -T script -C none -n "u-boot commands" -d tst_eth tst_eth.scr
 
 Usage:
 Put the cables in eth0 and eth1. 
